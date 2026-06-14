@@ -15,10 +15,10 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
-'''
+#Done after model trainer file is complete
 from src.components.model_trainer import ModelTrainerConfig
 from src.components.model_trainer import ModelTrainer
-'''
+
 
 #to give inputs
 # Define a configuration class to hold file paths automatically
@@ -32,7 +32,6 @@ class DataIngestionConfig:
     path: A specific submodule inside os that contains tools specifically meant for managing and manipulating file path names.
     .join(): A highly useful function that glues folders and file names together into a single path.
     ''' 
-
 
 
 # Main class responsible for loading, saving, and splitting data
@@ -92,8 +91,7 @@ if __name__=="__main__":
     data_transformation=DataTransformation()
     train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
 
-'''
+    #This will be written after model trainer file is created
     # STEP 3: Pass the clean transformed arrays into the model trainer to run ML algorithms
     modeltrainer=ModelTrainer()
     print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
-    '''
