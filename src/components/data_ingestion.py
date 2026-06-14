@@ -2,6 +2,7 @@
 import os
 import sys
 
+#from src file
 from src.exception import CustomException
 from src.logger import logging
 
@@ -10,15 +11,16 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
-'''
+#Done after data transfromation file is complete
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+'''
 from src.components.model_trainer import ModelTrainerConfig
 from src.components.model_trainer import ModelTrainer
 '''
 
-
+#to give inputs
 # Define a configuration class to hold file paths automatically
 @dataclass #you dont need to give init method for this class
 class DataIngestionConfig:
@@ -29,7 +31,7 @@ class DataIngestionConfig:
     '''
     path: A specific submodule inside os that contains tools specifically meant for managing and manipulating file path names.
     .join(): A highly useful function that glues folders and file names together into a single path.
-    '''
+    ''' 
 
 
 
@@ -68,7 +70,7 @@ class DataIngestion:
             logging.info("Ingestion of the data is completed")
 
 
-            # Return the file paths of the train and test sets for the next pipeline steps
+            # Return the file paths of the train and test sets for the next pipeline steps(data transformation)
             return(
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path
@@ -84,11 +86,14 @@ if __name__=="__main__":
     # STEP 1: Run data ingestion (load data, split it, and save it to artifacts folder)
     obj=DataIngestion()
     train_data,test_data=obj.initiate_data_ingestion()
-'''
+
+    #This will be written after data transformation file is created
     # STEP 2: Pass those saved data paths into data transformation (cleaning, encoding, scaling)
     data_transformation=DataTransformation()
     train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
 
+'''
     # STEP 3: Pass the clean transformed arrays into the model trainer to run ML algorithms
     modeltrainer=ModelTrainer()
-    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))'''
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
+    '''
