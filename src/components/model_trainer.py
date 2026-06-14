@@ -58,7 +58,7 @@ class ModelTrainer:
                 "CatBoosting Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
-            '''
+
             # 3. Hyperparameter tuning each model
             params={
                 "Decision Tree": {
@@ -87,13 +87,13 @@ class ModelTrainer:
                     'n_estimators': [8,16,32,64,128,256]
                 }
                 
-            }'''
+            }
 
             # 4. Run our custom evaluation function to train every model and get a report card of their scores
             #this function is taken from utils
             #isime fitting, prediction and scoring ho jayega
             model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,
-                                             models=models)
+                                             models=models, param=params)
             
             # 5. Look through the report card and find the highest score
             best_model_score = max(sorted(model_report.values()))
